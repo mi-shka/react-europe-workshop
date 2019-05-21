@@ -43,6 +43,7 @@ function App() {
   if (state.loading) return <h1> Loading...</h1>
 
   return (
+    <h1> Welcome to my App</h1>
     <div>
       {
         state.coins.map((c, i) => (

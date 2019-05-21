@@ -60,7 +60,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplifyreactapp-dev-20190521111047-deployment",
-					"S3Key": "amplify-builds/cryptofunction-1558441690-latest-build.zip"
+					"S3Key": "amplify-builds/cryptofunction-1558446574-latest-build.zip"
 				}
 			}
 		},

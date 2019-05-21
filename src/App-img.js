@@ -1,25 +1,24 @@
 // src/App.js
 import React, { useEffect, useState } from 'react'
-import { Analytics, Auth } from 'aws-amplify'
+import { Storage } from 'aws-amplify'
 import { S3Album, withAuthenticator } from 'aws-amplify-react'
 
-const state = {username: ''}
-
 const App = () => {
-    const [username, setUsername] = useState('')
-    function recordEvent() {
-        Analytics.record({
-            name: 'My test event',
-            attributes: { username }
+    const [imageUrl, updateImage] = useState('')
+    function fetchImage() {
+        Storage.get('example.png')
+        .then(data => {
+            console.log('data:', data)
+            updateImage(data)
         })
+        .catch(err => console.log(err))
     }
     useEffect(() => {
-        Auth.currentAuthenticatedUser()
-        .then(user => setUsername(user.username))
-        .catch(err => console.log(err))
+        fetchImage()
     }, [])
     return (
-        <button onClick={recordEvent}>Record Event</button>
+        <img src={imageUrl}
+        />
     )
 }
 

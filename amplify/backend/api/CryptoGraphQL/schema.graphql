@@ -4,6 +4,7 @@ type Coin {
 	name: String!
 	symbol: String!
 	price: Float!
+  rank: Int
 }
 
 input CreateCoinInput {
@@ -127,3 +128,4 @@ type Note @model @auth(rules: [{allow: owner}]) {
   title: String!
   description: String
 }
+

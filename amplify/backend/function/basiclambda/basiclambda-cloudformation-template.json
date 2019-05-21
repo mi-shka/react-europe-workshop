@@ -60,7 +60,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplifyreactapp-dev-20190521111047-deployment",
-					"S3Key": "amplify-builds/basiclambda-1558441686-latest-build.zip"
+					"S3Key": "amplify-builds/basiclambda-1558446560-latest-build.zip"
 				}
 			}
 		},

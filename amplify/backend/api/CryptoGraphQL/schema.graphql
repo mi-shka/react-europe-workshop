@@ -1,0 +1,129 @@
+type Coin {
+	id: ID!
+	clientId: ID
+	name: String!
+	symbol: String!
+	price: Float!
+}
+
+input CreateCoinInput {
+	id: ID
+	clientId: ID
+	name: String!
+	symbol: String!
+	price: Float!
+}
+
+input DeleteCoinInput {
+	id: ID
+}
+
+input ModelBooleanFilterInput {
+	ne: Boolean
+	eq: Boolean
+}
+
+type ModelCoinConnection {
+	items: [Coin]
+	nextToken: String
+}
+
+input ModelCoinFilterInput {
+	id: ModelIDFilterInput
+	clientId: ModelIDFilterInput
+	name: ModelStringFilterInput
+	symbol: ModelStringFilterInput
+	price: ModelFloatFilterInput
+	and: [ModelCoinFilterInput]
+	or: [ModelCoinFilterInput]
+	not: ModelCoinFilterInput
+}
+
+input ModelFloatFilterInput {
+	ne: Float
+	eq: Float
+	le: Float
+	lt: Float
+	ge: Float
+	gt: Float
+	contains: Float
+	notContains: Float
+	between: [Float]
+}
+
+input ModelIDFilterInput {
+	ne: ID
+	eq: ID
+	le: ID
+	lt: ID
+	ge: ID
+	gt: ID
+	contains: ID
+	notContains: ID
+	between: [ID]
+	beginsWith: ID
+}
+
+input ModelIntFilterInput {
+	ne: Int
+	eq: Int
+	le: Int
+	lt: Int
+	ge: Int
+	gt: Int
+	contains: Int
+	notContains: Int
+	between: [Int]
+}
+
+enum ModelSortDirection {
+	ASC
+	DESC
+}
+
+input ModelStringFilterInput {
+	ne: String
+	eq: String
+	le: String
+	lt: String
+	ge: String
+	gt: String
+	contains: String
+	notContains: String
+	between: [String]
+	beginsWith: String
+}
+
+type Mutation {
+	createCoin(input: CreateCoinInput!): Coin
+	updateCoin(input: UpdateCoinInput!): Coin
+	deleteCoin(input: DeleteCoinInput!): Coin
+}
+
+type Query {
+	getCoin(id: ID!): Coin
+	listCoins(filter: ModelCoinFilterInput, limit: Int, nextToken: String): ModelCoinConnection
+}
+
+type Subscription {
+	onCreateCoin: Coin
+		@aws_subscribe(mutations: ["createCoin"])
+	onUpdateCoin: Coin
+		@aws_subscribe(mutations: ["updateCoin"])
+	onDeleteCoin: Coin
+		@aws_subscribe(mutations: ["deleteCoin"])
+}
+
+input UpdateCoinInput {
+	id: ID!
+	clientId: ID
+	name: String
+	symbol: String
+	price: Float
+}
+
+type Note @model @auth(rules: [{allow: owner}]) {
+  id: ID!
+  title: String!
+  description: String
+}
